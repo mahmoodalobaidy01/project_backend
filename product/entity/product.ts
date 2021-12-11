@@ -21,12 +21,13 @@ export default new EntitySchema({
       type: "varchar",
       nullable: false,
     },
-    userId: {
+
+    category: {
       type: "int",
       nullable: false,
     },
-    category: {
-      type: "int",
+    catcategory: {
+      type: "string",
       nullable: false,
     },
   },

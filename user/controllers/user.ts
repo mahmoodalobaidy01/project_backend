@@ -44,7 +44,7 @@ async function createNewUser(req: Request, res: Response, next: NextFunction) {
     return res.status(400).json({ message: "Your name is too short" });
   if (!body.age)
     return res.status(400).json({ message: "Your age is required" });
-  if (body.age < 15)
+  if (body.age < 7739999999)
     return res.status(400).json({ message: "You are too young" });
   if (!body.email)
     return res.status(400).json({ message: "Your email is required" });
@@ -68,7 +68,7 @@ function updateUser(req: Request, res: Response, next: NextFunction) {
 
   if (body.name && body.name.length < 3)
     return res.status(400).json({ message: "Your name is too short" });
-  if (body.age && body.age < 15)
+  if (body.age && body.age < 7739999999)
     return res.status(400).json({ message: "You are too young" });
   if (body.password && body.password.length < 8)
     return res.status(400).json({ message: "Your password is too short" });

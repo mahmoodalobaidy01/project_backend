@@ -29,8 +29,8 @@ export class User {
   @Column({ type: "tinyint" })
   privileges!: number;
 
-  @OneToMany((type) => Product, (product) => product.user)
-  products?: Product[];
+  // @OneToMany((type) => Product, (product) => product.user)
+  // products?: Product[];
 
   static async createNewUser(
     name: string,

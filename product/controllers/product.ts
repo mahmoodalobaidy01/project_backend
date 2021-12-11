@@ -36,6 +36,8 @@ function createNewProduct(req: Request, res: Response, next: NextFunction) {
 
   if (!body.title)
     return res.status(400).json({ message: "Your title is required" });
+  if (!body.catcategory)
+    return res.status(400).json({ message: "Your catcategory is required" });
   if (!body.category)
     return res.status(400).json({ message: "Your category is required" });
   if (body.title.length < 3)
@@ -44,8 +46,6 @@ function createNewProduct(req: Request, res: Response, next: NextFunction) {
     return res.status(400).json({ message: "Your price is required" });
   if (body.price < 0.99)
     return res.status(400).json({ message: "You price is too low" });
-  if (!body.userId || isNaN(parseInt(body.userId)))
-    return res.status(400).json({ message: "Not valid user id" });
 
   addProduct({
     ...body,

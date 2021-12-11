@@ -25,13 +25,18 @@ export class Product {
   @Column({ length: 255 })
   imagePath!: string;
 
-  @ManyToOne((type) => User, (user) => user.products, {
-    nullable: false,
-  })
+  // @ManyToOne((type) => User, (user) => user.products, {
+  //   nullable: false,
+  // })
   user!: number;
 
+  @Column()
+  category!: number;
+  // @Column("simple-array")
+
+  // names: string[];
   @Column({ length: 255 })
-  category!: string;
+  catcategory!: string;
 }
 
 const productService = () => {
@@ -40,19 +45,17 @@ const productService = () => {
       title: string;
       price: number;
       imagePath: string;
-      userId: number;
-      category: string;
+      category: number;
+      catcategory: string;
     },
     productRepository: Repository<Product> = getRepository("Product")
   ): Promise<Product | { message: string }> {
-    if (!userModel.getUserById(value.userId))
-      return { message: "User not found" };
     const product = new Product();
     product.title = value.title;
     product.price = value.price;
     product.imagePath = value.imagePath;
-    product.user = value.userId;
     product.category = value.category;
+    product.catcategory = value.catcategory;
     return await productRepository.save(product);
   }
 
@@ -60,7 +63,15 @@ const productService = () => {
     productRepository: Repository<Product> = getRepository("Product")
   ) =>
     await productRepository.find({
-      select: ["id", "title", "price", "imagePath", "user", "category"],
+      select: [
+        "id",
+        "title",
+        "price",
+        "imagePath",
+        "user",
+        "category",
+        "catcategory",
+      ],
       // where: {
       //     price:20
       // },
