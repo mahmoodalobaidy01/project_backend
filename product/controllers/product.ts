@@ -48,6 +48,8 @@ function createNewProduct(req: Request, res: Response, next: NextFunction) {
     return res.status(400).json({ message: "You price is too low" });
   if (!body.description)
     return res.status(400).json({ message: "Your descrption is required" });
+  if (!body.qt)
+    return res.status(400).json({ message: "Your quantity is required" });
 
   addProduct({
     ...body,
