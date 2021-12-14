@@ -40,6 +40,8 @@ export class Product {
 
   @Column()
   description!: string;
+  @Column()
+  qt!: number;
 }
 
 const productService = () => {
@@ -51,6 +53,7 @@ const productService = () => {
       category: number;
       catcategory: string;
       description: string;
+      qt: number;
     },
     productRepository: Repository<Product> = getRepository("Product")
   ): Promise<Product | { message: string }> {
@@ -61,6 +64,7 @@ const productService = () => {
     product.category = value.category;
     product.catcategory = value.catcategory;
     product.description = value.description;
+    product.qt = value.qt;
     return await productRepository.save(product);
   }
 
@@ -77,6 +81,7 @@ const productService = () => {
         "category",
         "catcategory",
         "description",
+        "qt",
       ],
       // where: {
       //     price:20

@@ -34,6 +34,10 @@ export default new EntitySchema({
       type: "string",
       nullable: false,
     },
+    qt: {
+      type: "int",
+      nullable: false,
+    },
   },
   name: "product",
   target: Product,
