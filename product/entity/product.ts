@@ -30,6 +30,10 @@ export default new EntitySchema({
       type: "string",
       nullable: false,
     },
+    description: {
+      type: "string",
+      nullable: false,
+    },
   },
   name: "product",
   target: Product,

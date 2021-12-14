@@ -37,6 +37,9 @@ export class Product {
   // names: string[];
   @Column({ length: 255 })
   catcategory!: string;
+
+  @Column()
+  description!: string;
 }
 
 const productService = () => {
@@ -47,6 +50,7 @@ const productService = () => {
       imagePath: string;
       category: number;
       catcategory: string;
+      description: string;
     },
     productRepository: Repository<Product> = getRepository("Product")
   ): Promise<Product | { message: string }> {
@@ -56,6 +60,7 @@ const productService = () => {
     product.imagePath = value.imagePath;
     product.category = value.category;
     product.catcategory = value.catcategory;
+    product.description = value.description;
     return await productRepository.save(product);
   }
 
@@ -71,6 +76,7 @@ const productService = () => {
         "user",
         "category",
         "catcategory",
+        "description",
       ],
       // where: {
       //     price:20
