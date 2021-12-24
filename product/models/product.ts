@@ -28,7 +28,7 @@ export class Product {
   // @ManyToOne((type) => User, (user) => user.products, {
   //   nullable: false,
   // })
-  user!: number;
+  // user!: number;
 
   @Column()
   category!: number;
@@ -77,7 +77,6 @@ const productService = () => {
         "title",
         "price",
         "imagePath",
-        "user",
         "category",
         "catcategory",
         "description",

@@ -9,6 +9,8 @@ import {
   deleteProduct,
   updateProduct,
 } from "../controllers/product";
+import isAuth from "../../middlewares/isAuth";
+
 
 const upload = multer({
   storage: multer.diskStorage({
@@ -29,14 +31,14 @@ const upload = multer({
 const router = express.Router();
 
 router.get("/:productId", getProductById);
-router.delete("/:productId", deleteProduct);
+router.delete("/:productId",isAuth, deleteProduct);
 
 router.get("/", getProducts);
 
 // router.use(express.json());
 router.use(upload.single("image"));
 
-router.post("/", createNewProduct);
-router.put("/:productId", updateProduct);
+router.post("/", isAuth,createNewProduct);
+router.put("/:productId",isAuth, updateProduct);
 
 export default router;

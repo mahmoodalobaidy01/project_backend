@@ -26,11 +26,11 @@ import { createExpressServer } from "routing-controllers";
 import { AuthController } from "./auth/routing-controller";
 
 // create backend application
-// const app = express();
+const app = express();
 
-const app = createExpressServer({
-  controllers: [AuthController], // we specify controllers we want to use
-});
+// const app = createExpressServer({
+//   controllers: [AuthController], // we specify controllers we want to use
+// });
 
 // ! U can use the middleware anywhere inside the express app
 app.use(cors());
@@ -51,15 +51,16 @@ createConnection({
   synchronize: true,
 })
   .then((connection) => {
-    // app.use("/", authenticationRoutes);
+    app.use("/", authenticationRoutes);
     // we used express static middleware here to serve static files
     app.use("/images", express.static(join(__dirname, "public", "images")));
 
     // is a middleware for checking whether
     // the user is logged in or not
+        app.use("/products", productsRoutes);
+
     app.use(isAuth);
     app.use("/users", usersRoutes);
-    app.use("/products", productsRoutes);
     app.listen(5500, "localhost", () => {
       console.log("the server link is " + "http://localhost:5500");
     });
