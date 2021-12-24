@@ -44,14 +44,14 @@ createConnection({
   port: 3306,
   username: "root",
   password: "",
-  database: "fikra",
+  database: "fikraaa",
   entities: [Product, User],
   logger: "simple-console",
   logging: true,
   synchronize: true,
 })
   .then((connection) => {
-    app.use("/", authenticationRoutes);
+    // app.use("/", authenticationRoutes);
     // we used express static middleware here to serve static files
     app.use("/images", express.static(join(__dirname, "public", "images")));
 
